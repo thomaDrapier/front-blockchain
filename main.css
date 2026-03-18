@@ -1,44 +1,256 @@
-body{
-background:#0d0f12;
-color:#e2e6ef;
-font-family:Arial;
-margin:0;
+/* Importation d'une police moderne (Inter) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Variables de couleurs (Thème Dark Web3) */
+:root {
+    --bg-main: #0b0f19;         /* Fond général très sombre */
+    --bg-panel: #131b2f;        /* Fond des panneaux */
+    --bg-card: #1c2640;         /* Fond des cartes */
+    --accent: #00ff88;          /* Vert fluo crypto */
+    --accent-hover: #00cc6a;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #2e3c5a;
 }
 
-header{
-display:flex;
-justify-content:space-between;
-padding:20px;
-border-bottom:1px solid #242830;
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    line-height: 1.6;
 }
 
-button{
-padding:8px 14px;
-cursor:pointer;
+/* ─── HEADER ─── */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background-color: var(--bg-panel);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:20px;
+header h2 {
+    margin: 0;
+    /* Effet dégradé sur le logo */
+    background: linear-gradient(90deg, #00ff88, #00b8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
 }
 
-.panel{
-background:#151820;
-padding:20px;
-margin-bottom:20px;
-border-radius:6px;
+/* ─── BOUTONS ─── */
+button {
+    background-color: var(--accent);
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-gap:20px;
+button:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2);
 }
 
-.card{
-background:#0d0f12;
-padding:15px;
-border:1px solid #242830;
-border-radius:6px;
+button:disabled {
+    background-color: var(--border-color);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ─── LAYOUT & PANNEAUX ─── */
+.container {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.panel {
+    background-color: var(--bg-panel);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.panel h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.8rem;
+}
+
+/* ─── FORMULAIRES ─── */
+input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 16px;
+    margin-bottom: 1rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: white;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+}
+
+/* ─── GRILLE & CARTES ─── */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #3b82f6; /* Bordure bleue au survol */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+    margin-bottom: 1.5rem;
+}
+
+.card h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.card p {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.card .price strong {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.card .seller {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+}
+
+.badge {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+    cursor: help;
+}
+
+.btn-buy {
+    width: 100%;
+    background-color: #3b82f6; /* Bleu crypto */
+    color: white;
+}
+
+.btn-buy:hover {
+    background-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* ─── LAYOUT BARRE LATÉRALE CENTRÉE ─── */
+.app-layout {
+    display: grid;
+    /* 3 colonnes : Espace gauche (1fr) | Contenu central (max 900px) | Espace droit (1fr) */
+    grid-template-columns: 1fr minmax(auto, 900px) 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+    padding: 0 20px;
+    align-items: flex-start;
+}
+
+.main-content {
+    grid-column: 2; /* Force le contenu principal dans la colonne centrale */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sidebar {
+    grid-column: 3; /* Place la barre dans l'espace vide de droite */
+    width: 320px;
+}
+
+/* ─── DESIGN DES TRANSACTIONS ─── */
+.tx-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+}
+
+.tx-item.pending { border-left: 4px solid #f5a623; }
+.tx-item.completed { border-left: 4px solid var(--accent); }
+.tx-item.earned { border-left: 4px solid #3b82f6; }
+
+.tx-amount { font-weight: bold; }
+.tx-earned .tx-amount { color: #3b82f6; }
+.tx-spent .tx-amount { color: #f8fafc; }
+
+/* ─── ADAPTATION POUR PETITS ÉCRANS (Responsive) ─── */
+@media (max-width: 1400px) {
+    .app-layout {
+        display: flex; /* Repasse en mode flexible si l'écran est trop petit */
+        max-width: 1100px;
+        margin: 3rem auto;
+    }
+    .main-content {
+        flex: 1;
+    }
+}
+
+@media (max-width: 900px) {
+    .app-layout {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+    }
 }

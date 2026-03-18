@@ -1,73 +1,66 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>FreelanceHub dApp</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FreelanceHub dApp</title>
 
-<script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
-<link rel="stylesheet" href="main.css">
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+  <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
 
-<header>
+  <header>
+    <h2>FreelanceHub</h2>
+    <div style="display: flex; align-items: center;">
+      <span id="wallet-balance" style="margin-right: 15px; color: #4fffb0; font-weight: bold; font-family: monospace;"></span>
+      <span id="wallet-address" style="margin-right: 15px; color: gray;"></span>
+      <button onclick="connectWallet()" id="connect-btn">Connect MetaMask</button>
+    </div>
+  </header>
 
-<h2>FreelanceHub</h2>
+  <div class="app-layout">
+    
+    <div class="main-content">
+      
+      <div class="panel">
+        <h3>Créer un service</h3>
+        <input id="svc-name" placeholder="Nom du service"><br><br>
+        <input id="svc-price" placeholder="Prix ETH"><br><br>
+        <input id="svc-duration" placeholder="Durée jours"><br><br>
+        <button id="create-btn" onclick="createService()" disabled>Publier</button>
+      </div>
 
-<div>
-<span id="wallet-address"></span>
-<button onclick="connectWallet()" id="connect-btn">Connect MetaMask</button>
-</div>
+      <div class="panel">
+        <h3>Marketplace</h3>
+        <div id="services-list" class="grid"></div>
+      </div>
 
-</header>
+      <div class="panel">
+        <h3>Commandes vendeur</h3>
+        <div id="orders-list"></div>
+      </div>
 
-<div class="container">
+      <div class="panel">
+        <h3>Finaliser commande (acheteur)</h3>
+        <div id="complete-list"></div>
+      </div>
 
-<div class="panel">
+    </div>
 
-<h3>Créer un service</h3>
+    <aside class="sidebar">
+      <div class="panel" style="position: sticky; top: 100px;">
+        <h3>Historique des transactions</h3>
+        <div id="tx-history">
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Connectez-vous pour voir l'historique.</p>
+        </div>
+      </div>
+    </aside>
 
-<input id="svc-name" placeholder="Nom du service"><br><br>
+  </div>
 
-<input id="svc-price" placeholder="Prix ETH"><br><br>
-
-<input id="svc-duration" placeholder="Durée jours"><br><br>
-
-<button id="create-btn" onclick="createService()" disabled>Publier</button>
-
-</div>
-
-<div class="panel">
-
-<h3>Marketplace</h3>
-
-<div id="services-list" class="grid"></div>
-
-</div>
-
-<div class="panel">
-
-<h3>Commandes vendeur</h3>
-
-<div id="orders-list"></div>
-
-</div>
-
-<div class="panel">
-
-<h3>Finaliser commande (acheteur)</h3>
-
-<div id="complete-list"></div>
-
-</div>
-
-</div>
-
-<script src="main.js">
-
-
-</script>
+  <script src="main.js"></script>
 
 </body>
 </html>
