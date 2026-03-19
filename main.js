@@ -574,16 +574,16 @@ async function completeOrder(id){
 
 // === WIDGET MEILLEURS FREELANCES ===
 const topFreelancers = [
-    { name: "Alice", service: "UI/UX Design", price: "0.5", img: "https://i.pravatar.cc/150?img=1" },
-    { name: "Bob", service: "Smart Contract ERC20", price: "1.2", img: "https://i.pravatar.cc/150?img=11" },
-    { name: "Charlie", service: "Logo & Branding", price: "0.1", img: "https://i.pravatar.cc/150?img=33" },
-    { name: "Diana", service: "Audit DeFi", price: "2.0", img: "https://i.pravatar.cc/150?img=4" },
-    { name: "Eve", service: "Frontend Web3", price: "0.8", img: "https://i.pravatar.cc/150?img=5" },
-    { name: "Frank", service: "DApp Architecture", price: "1.5", img: "https://i.pravatar.cc/150?img=6" },
-    { name: "Grace", service: "Copywriting Web3", price: "0.2", img: "https://i.pravatar.cc/150?img=9" },
-    { name: "Henry", service: "3D NFT Collection", price: "0.9", img: "https://i.pravatar.cc/150?img=8" },
-    { name: "Ivy", service: "Community Management", price: "0.3", img: "https://i.pravatar.cc/150?img=10" },
-    { name: "Jack", service: "Tokenomics Design", price: "1.0", img: "https://i.pravatar.cc/150?img=12" }
+    { name: "Alice", service: "UI/UX Design", rating: 4.9, img: "https://i.pravatar.cc/150?img=1" },
+    { name: "Bob", service: "Smart Contract ERC20", rating: 4.7, img: "https://i.pravatar.cc/150?img=11" },
+    { name: "Charlie", service: "Logo & Branding", rating: 5.0, img: "https://i.pravatar.cc/150?img=33" },
+    { name: "Diana", service: "Audit DeFi", rating: 4.8, img: "https://i.pravatar.cc/150?img=4" },
+    { name: "Eve", service: "Frontend Web3", rating: 4.6, img: "https://i.pravatar.cc/150?img=5" },
+    { name: "Frank", service: "DApp Architecture", rating: 5.0, img: "https://i.pravatar.cc/150?img=6" },
+    { name: "Grace", service: "Copywriting Web3", rating: 4.5, img: "https://i.pravatar.cc/150?img=9" },
+    { name: "Henry", service: "3D NFT Collection", rating: 4.9, img: "https://i.pravatar.cc/150?img=8" },
+    { name: "Ivy", service: "Community Management", rating: 4.4, img: "https://i.pravatar.cc/150?img=10" },
+    { name: "Jack", service: "Tokenomics Design", rating: 4.8, img: "https://i.pravatar.cc/150?img=12" }
 ];
 
 function loadTopFreelancers() {
@@ -592,7 +592,20 @@ function loadTopFreelancers() {
 
     let htmlContent = "";
 
-    // Fonction pour créer une carte HTML
+    // Fonction qui génère les 5 étoiles visuellement
+    const getStars = (rating) => {
+        let starsHtml = "";
+        for (let i = 1; i <= 5; i++) {
+            if (i <= Math.round(rating)) {
+                starsHtml += '<span class="star filled">★</span>'; // Étoile dorée
+            } else {
+                starsHtml += '<span class="star">★</span>'; // Étoile grisée
+            }
+        }
+        return starsHtml;
+    };
+
+    // Nouveau design de la carte
     const createCard = (f) => `
         <div class="freelance-card">
             <img src="${f.img}" alt="${f.name}" class="freelance-avatar">
@@ -600,17 +613,21 @@ function loadTopFreelancers() {
                 <span class="freelance-name">${f.name}</span>
                 <span class="freelance-service">${f.service}</span>
             </div>
-            <span class="freelance-price">${f.price} ETH</span>
+            <div class="freelance-rating">
+                <div class="stars">${getStars(f.rating)}</div>
+                <span class="rating-number">${f.rating}/5</span>
+            </div>
         </div>
     `;
 
-    // L'ASTUCE MAGIQUE : On génère la liste 2 fois à la suite !
-    // Cela permet à l'animation CSS de faire un défilement infini sans aucune coupure.
+    // On double la liste pour le défilement infini
     topFreelancers.forEach(f => htmlContent += createCard(f));
     topFreelancers.forEach(f => htmlContent += createCard(f)); 
 
     container.innerHTML = htmlContent;
 }
+
+window.addEventListener('DOMContentLoaded', loadTopFreelancers);
 
 // On charge la liste dès que la page s'ouvre (pas besoin d'attendre MetaMask)
 window.addEventListener('DOMContentLoaded', loadTopFreelancers);

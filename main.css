@@ -303,10 +303,34 @@ input:focus {
     color: var(--text-muted);
 }
 
-.freelance-price {
-    font-weight: bold;
-    font-size: 0.85rem;
-    color: var(--accent);
+/* ─── NOUVEAU DESIGN DES ÉTOILES ─── */
+.freelance-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.stars {
+    display: flex;
+    gap: 2px;
+    color: #334155; /* Couleur des étoiles vides (gris très sombre) */
+    font-size: 0.95rem;
+}
+
+.star.filled {
+    color: #f5a623; /* Couleur or/jaune pour les étoiles pleines */
+    text-shadow: 0 0 6px rgba(245, 166, 35, 0.4); /* Léger effet de brillance néon */
+}
+
+.rating-number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #f5a623;
+    background: rgba(245, 166, 35, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(245, 166, 35, 0.2);
 }
 
 /* ─── RESPONSIVE (Pour les plus petits écrans) ─── */
